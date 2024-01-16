@@ -1,0 +1,42 @@
+CAPI=2:
+name: ::OV7670:0
+
+filesets:
+  rtl:
+    files:
+      - rtl/OV7670.sv : {file_type : systemVerilogSource}
+
+  tb:
+    files:
+      - tb/tb_OV7670.sv : {file_type : systemVerilogSource}
+
+  basys3:
+    files: [board/Basys3.xdc : {file_type : xdc}]
+
+targets:
+  default: &default
+    filesets:
+      - rtl
+    toplevel: OV7670
+
+  sim:
+    default_tool: xsim
+    filesets : [rtl, tb]
+    toplevel: [tb_OV7670]
+
+  synth:
+    default_tool : vivado
+    filesets : [rtl]
+    tools:
+      vivado:
+        part : xc7a35tcpg236-1
+        pnr : none
+    toplevel : OV7670
+
+  basys3:
+    default_tool : vivado
+    filesets : [rtl, basys3]
+    tools:
+      vivado:
+        part : xc7a35tcpg236-1
+    toplevel : OV7670
