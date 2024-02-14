@@ -4,7 +4,7 @@ name: ::OV7670:0
 filesets:
   rtl:
     files:
-      - rtl/OV7670.sv : {file_type : systemVerilogSource}
+      - rtl/OV7670.vhd : {file_type : vhdlSource}
 
   tb:
     files:
@@ -17,7 +17,7 @@ targets:
   default: &default
     filesets:
       - rtl
-    toplevel: OV7670
+    toplevel: top_level
 
   sim:
     default_tool: xsim
@@ -31,7 +31,7 @@ targets:
       vivado:
         part : xc7a35tcpg236-1
         pnr : none
-    toplevel : OV7670
+    toplevel : top_level
 
   basys3:
     default_tool : vivado
